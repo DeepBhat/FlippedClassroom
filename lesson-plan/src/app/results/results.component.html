@@ -1,1 +1,16 @@
-<p>results works!</p>
+<p>Your score is: {{ score }}</p>
+
+<div *ngFor="let question of questions; let ind=index">
+    <p>
+        {{ ind + 1 }}. {{ question.question }}
+        <span *ngIf="isRight(question.id)"> &#10003; </span>
+        <span *ngIf="!isRight(question.id)"> &times; </span>
+    </p>
+    <div *ngFor="let choice of question.choices; let i=index">
+        <input disabled="true" [checked]="getChecked(question.id, choice)" type="radio" [value]="choice"> <span> {{ choice }} </span>
+    </div>
+</div>
+
+
+<button *ngIf="questionsType === 'preLesson' && formSubmitted" routerLink="/lesson">Next</button>    
+<button *ngIf="questionsType === 'postLesson' && formSubmitted" routerLink="/profile">Final steps</button>    

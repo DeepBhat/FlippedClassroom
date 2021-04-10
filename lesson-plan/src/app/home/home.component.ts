@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.isExperiment)
+    if (this.isExperiment) {
       this.route = "/test/pretest"
-    else
+      environment.isExperimentGroup = true;
+    } else {
       this.route = "/lesson"
+      environment.isExperimentGroup = false;
+    }
   }
 
 }

@@ -1,14 +1,22 @@
-<p>test-questions works!</p>
-
-<form (ngSubmit)="submitTest()" [formGroup]="questionsForm">
-    <div *ngFor="let question of questions">
-        <p>{{ question.question }}</p>
-        <div *ngFor="let choice of question.choices">
-            <input type="radio" [formControlName]="'question' + question.id" [value]="choice"> <span> {{ choice }} </span>
+<div *ngIf="!formSubmitted">
+    <form (ngSubmit)="submitTest()" [formGroup]="questionsForm">
+        <div *ngFor="let question of questions; let i=index">
+            <p>{{ i + 1 }}. {{ question.question }}</p>
+            
+            <div *ngFor="let choice of question.choices">
+                <input type="radio" [formControlName]="'question' + question.id" [value]="choice"> <span> {{ choice }} </span>
+            </div>
         </div>
-    </div>
-    <input type="submit" text="Submit">
-</form>
+        <input type="submit" text="Submit">
+    </form>
+</div>
 
-<p *ngIf="score">Your score is: {{ score }}</p>
-<button *ngIf="questionsType === 'preLesson' && score" routerLink="/lesson">Next</button>    
+<app-results *ngIf="formSubmitted"
+    [questions]="questions"
+    [questionsType]="questionsType"
+    [answers]="givenAnswers"
+    [formSubmitted]="formSubmitted"
+    [score]="score"
+    [mapping]="indexToId"
+    [correctQuestions]="correctQuestions"
+></app-results>

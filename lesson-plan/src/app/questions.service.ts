@@ -233,6 +233,7 @@ export class QuestionsService {
   public questions = []
   public answers = []
   public givenAnswers = []
+  public correctQuestions = []
 
   constructor() { }
 
@@ -311,12 +312,15 @@ export class QuestionsService {
     this.setAnswers(questionType)
 
     var score = 0
-
-    // now sort the 
+    this.correctQuestions = []
+    // match correct and given answers
     givenAnswers.forEach(givenAnswer => {
       for (var correctAnswer of this.answers) {
         if (correctAnswer.id === givenAnswer.id) {
-          if (correctAnswer.answer === givenAnswer.answer)  score += 1
+          if (correctAnswer.answer === givenAnswer.answer)  {
+            score += 1
+            this.correctQuestions.push(givenAnswer.id)
+          }
           break
         }
       }
