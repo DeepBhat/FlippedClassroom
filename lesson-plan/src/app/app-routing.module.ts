@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'test', component: TestQuestionsComponent},
   {path: 'test/pretest', component: TestQuestionsComponent},
   {path: 'lesson', component: LessonComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:score', component: ProfileComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

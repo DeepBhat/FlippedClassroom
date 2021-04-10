@@ -13,4 +13,4 @@
 
 
 <button *ngIf="questionsType === 'preLesson' && formSubmitted" routerLink="/lesson">Next</button>    
-<button *ngIf="questionsType === 'postLesson' && formSubmitted" routerLink="/profile">Final steps</button>    
+<button *ngIf="questionsType === 'postLesson' && formSubmitted" [routerLink]="'/profile/' + score">Final steps</button>    
