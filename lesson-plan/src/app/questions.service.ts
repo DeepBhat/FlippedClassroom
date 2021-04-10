@@ -232,8 +232,28 @@ export class QuestionsService {
   ]
   public questions = []
   public answers = []
+  public givenAnswers = []
 
   constructor() { }
+
+  private shuffleArray(array: Array<Object>) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
 
   setQuestions(questionType: "preLesson" | "postLesson"): Array<Object> {
     if (questionType === "preLesson")
@@ -257,9 +277,21 @@ export class QuestionsService {
     return this.answers
   }
 
+  setGivenAnswers(givenAnswers: object) {
+    this.givenAnswers = []
+    for (let i = 1; i <= 10; i++) {
+      this.givenAnswers.push({
+        id: i,
+        answer: givenAnswers["question" + i]
+      })
+    }
+
+    return this.givenAnswers
+  }
+
   getQuestions(): Array<Object> | null {
     if (this.questions.length > 0)
-      return this.questions
+      return this.shuffleArray(this.questions)
     else 
       console.error("Set the question type first!")
     return null
@@ -274,11 +306,13 @@ export class QuestionsService {
       console.error("Wrong question type sent")
   }
 
-  getScore(questionType: "preLesson" | "postLesson", givenAnswers: Array<{id: number, answer: string}>): number {
+  getScore(questionType: "preLesson" | "postLesson", givenAnswers: Array<{id: number, answer: string}> = this.givenAnswers): number {
     this.setQuestions(questionType)
     this.setAnswers(questionType)
 
-    let score = 0
+    var score = 0
+
+    // now sort the 
     givenAnswers.forEach(givenAnswer => {
       for (var correctAnswer of this.answers) {
         if (correctAnswer.id === givenAnswer.id) {

@@ -1,0 +1,20 @@
+<h1>Flipped Learning</h1>
+<h3>A classroom experiment.</h3>
+<br>
+<p>
+    Presented by Team 2, we try to prove that taking a pretest before taking the 
+    lesson improves retention. Ready?
+</p>
+
+<div *ngIf="isExperiment">
+    You are a part of the experiment group!
+    <br>
+    <button [routerLink]="route">To the Pretest</button>
+</div>
+
+<div *ngIf="!isExperiment">
+    You are a part of the control group!
+    <br>
+    <button [routerLink]="route">To the lesson</button>
+</div>
+
