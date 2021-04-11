@@ -86,5 +86,7 @@ export class TestQuestionsComponent implements OnInit {
     
     return array;
   }
-
+  submitForm() {
+    
+  }
 }

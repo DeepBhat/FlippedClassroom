@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   fiveMinutesPassed: true,
   isExperimentGroup: false,
+  backendURL: "localhost:3000/"
 };
 
 /*

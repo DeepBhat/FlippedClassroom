@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+    <label>Age</label>
+    <input type="text" formControlName="age">
+    <label>Knowledge of History</label>
+    <input type="text" formControlName="knowledge">
+    <label>Education</label>
+    <input type="text" formControlName="education" placeholder="'Highschool', 'Undergraduate','Graduate', etc">
+    <button type="submit">Submit</button>
+</form>
