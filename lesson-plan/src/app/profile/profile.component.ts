@@ -30,8 +30,6 @@ export class ProfileComponent implements OnInit {
     console.log(full_uri)
     const form = this.profileForm.getRawValue()
     console.log(form)
-    const payload = JSON.stringify(form)
-    console.log(payload)
     this.http.post(full_uri,form).subscribe(resp => {
       console.log(resp)
     })
